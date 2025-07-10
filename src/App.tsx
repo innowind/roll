@@ -23,7 +23,7 @@ export default function App() {
     }, 50);
   };
 
-  const numberOptions = [1, 2, 3, 4, 5, 10, 45];
+  const numberOptions = [2, 3, 4, 5, 10, 45];
 
   return (
     <div style={{ minHeight: "100vh", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", background: "linear-gradient(to bottom right, #e0f2fe, #c7d2fe)", padding: "2rem" }}>
