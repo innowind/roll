@@ -1,13 +1,10 @@
 import React, { useState } from "react";
-import { motion } from "framer-motion";
 
 export default function App() {
   const [maxNumber, setMaxNumber] = useState(10);
   const [rolledNumber, setRolledNumber] = useState<number | null>(null);
   const [customInput, setCustomInput] = useState("");
   const [isRolling, setIsRolling] = useState(false);
-
-  const numberOptions = [1, 2, 3, 4, 5, 10, 45];
 
   const handleRoll = () => {
     if (maxNumber < 1) return;
@@ -26,41 +23,34 @@ export default function App() {
     }, 50);
   };
 
+  const numberOptions = [1, 2, 3, 4, 5, 10, 45];
+
   return (
-    <div
-      className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-sky-100 to-indigo-200 p-4"
-      style={{ fontFamily: "Arial, sans-serif" }}
-    >
-      <div className="w-full max-w-md shadow-xl rounded-2xl bg-white p-6">
-        <h1 className="text-2xl font-bold text-center mb-6">🎲 랜덤 숫자 뽑기</h1>
+    <div style={{ minHeight: "100vh", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", background: "linear-gradient(to bottom right, #e0f2fe, #c7d2fe)", padding: "2rem" }}>
+      <div style={{ width: "100%", maxWidth: "400px", background: "white", borderRadius: "1rem", boxShadow: "0 4px 12px rgba(0,0,0,0.1)", padding: "2rem" }}>
+        <h1 style={{ fontSize: "1.5rem", fontWeight: "bold", textAlign: "center" }}>🎲 랜덤 숫자 뽑기</h1>
 
         {rolledNumber !== null && (
-          <motion.div
-            key={rolledNumber}
-            initial={{ scale: 0.5, opacity: 0 }}
-            animate={{ scale: 1.2, opacity: 1 }}
-            transition={{ type: "spring", stiffness: 200 }}
-            className="text-center text-5xl font-bold text-indigo-700 mb-6"
-          >
+          <div style={{ fontSize: "2rem", fontWeight: "bold", textAlign: "center", margin: "1rem 0", color: "#4f46e5" }}>
             🎉 {rolledNumber} 🎉
-          </motion.div>
+          </div>
         )}
 
-        <div className="flex flex-col items-center gap-4 mb-6">
-          <span className="text-base font-medium">1 ~ {maxNumber} 중에서 선택</span>
-          <div className="grid grid-cols-4 gap-2 w-full">
+        <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "1rem" }}>
+          <span>1 ~ {maxNumber} 중에서 선택</span>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "0.5rem", width: "100%" }}>
             {numberOptions.map((num) => (
               <button
                 key={num}
-                style={{
-                  backgroundColor: maxNumber === num ? "#fef9c3" : undefined,
-                  border: "1px solid #ccc",
-                  borderRadius: "6px",
-                  padding: "8px 0",
-                  fontSize: "1.125rem",
-                  cursor: "pointer",
-                }}
                 onClick={() => setMaxNumber(num)}
+                style={{
+                  padding: "0.5rem",
+                  backgroundColor: maxNumber === num ? "#fef9c3" : "#fff",
+                  border: "1px solid #ccc",
+                  borderRadius: "0.5rem",
+                  fontSize: "1rem",
+                  cursor: "pointer"
+                }}
               >
                 {num}
               </button>
@@ -77,32 +67,12 @@ export default function App() {
                 }
               }}
               placeholder="직접 입력"
-              style={{
-                gridColumn: "span 2",
-                textAlign: "center",
-                fontSize: "1.125rem",
-                padding: "8px",
-                borderRadius: "6px",
-                border: "1px solid #ccc",
-              }}
+              style={{ gridColumn: "span 2", textAlign: "center", fontSize: "1rem", padding: "0.5rem", borderRadius: "0.5rem", border: "1px solid #ccc" }}
             />
           </div>
         </div>
 
-        <button
-          onClick={handleRoll}
-          disabled={isRolling}
-          style={{
-            width: "100%",
-            fontSize: "1.25rem",
-            padding: "16px 0",
-            borderRadius: "10px",
-            backgroundColor: "#4f46e5",
-            color: "white",
-            cursor: isRolling ? "not-allowed" : "pointer",
-            border: "none",
-          }}
-        >
+        <button onClick={handleRoll} disabled={isRolling} style={{ width: "100%", fontSize: "1rem", padding: "1.5rem", marginTop: "1.5rem", backgroundColor: "#4f46e5", color: "white", border: "none", borderRadius: "1rem", cursor: "pointer" }}>
           Roll
         </button>
       </div>
